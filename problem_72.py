@@ -24,7 +24,7 @@ def min_distance(word1, word2):
     """Return minimum number of operations required to convert word1 into word2"""
     if word1 == word2:  # base cases
         return 0
-    if not word1 or not word2:
+    if not word1 and word2:
         return len(word1) + len(word2)
     dist = len(word1) - len(word2)
     if dist < 0:  # if word2 is bigger, swap words to reduce to first case
