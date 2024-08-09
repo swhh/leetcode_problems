@@ -35,7 +35,7 @@ def delete_middle(head):
     return head
 
 
-def build_linked_list(linked_list):
+def build_linked_list(linked_list: list):
     head = ListNode(val=linked_list[0])
     current = head
     for val in linked_list[1:]:
@@ -43,7 +43,7 @@ def build_linked_list(linked_list):
         current = current.next
     return head
 
-def build_list(head):
+def build_list(head: ListNode):
     linked_list = []
     current = head
     while current:
