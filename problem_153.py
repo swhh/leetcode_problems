@@ -17,10 +17,12 @@ def find_min(nums):
         return nums[0]
     if nums[-1] > nums[0]:  # no rotations
         return nums[0]
+    if len(nums) == 2:
+        return nums[0] if nums[0] < nums[1] else nums[1]    
     midpoint = len(nums) // 2
     if nums[midpoint] > nums[0]:
         return find_min(nums[midpoint + 1:])
     return find_min(nums[:midpoint + 1])
 
 
-print(find_min(test_array2))
+print(find_min(test_array1))
