@@ -12,9 +12,9 @@ def pad_bin(num, bin_len):
 def subsets(nums):
     """Return power set i.e. all possible subsets of nums"""
     exp = len(nums)
-    masks = (map(lambda x: bool(int(x)),pad_bin(num, exp)) for num in range(0, 2 ** exp)) # use binary strings to create subset masks
+    masks = (map(lambda x: int(x), pad_bin(num, exp)) for num in range(2 ** exp)) # use binary strings to create subset masks
     return [list(compress(nums, mask)) for mask in masks]
 
-print(subsets([1, 2, 3, 4]))
+print(subsets([1, 2, 3]))
 
 
