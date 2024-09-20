@@ -4,7 +4,6 @@ substring
 
 The testcases will be generated such that the answer is unique."""
 from collections import Counter
-from itertools import chain
 from itertools import combinations
 s = "ADOBECODEBANC"
 t = "ABC"
@@ -24,7 +23,7 @@ def min_window(s, t):
     n, k = len(s), len(t) 
     min_window = s
     positions = set(i for i in range(n) if s[i] in chars)
-    possible_substrings = ((s[i: j + 1] for i, j in combinations(positions, 2) if j - i >= k)) # all substrings that start and end with some chars and are at least len(k)
+    possible_substrings = ((s[i: j + 1] for i, j in combinations(positions, 2) if j - i >= k)) # all substrings that start and end with some chars and are at least length k
     for substring in possible_substrings:
         if len(substring) < len(min_window) and issubstring(substring):
             min_window = substring
