@@ -28,16 +28,16 @@ def parse_exp(expr):
     i = 0
     while i < len(expr):
         exp = ''
-        if expr[i] in OPS:
+        if expr[i] in OPS: # is an operator
             exp = expr[i]
             i += 1
-        elif expr[i].isnumeric():
+        elif expr[i].isnumeric(): # is a number
             while i < len(expr) and expr[i].isnumeric():
                 exp += expr[i]
                 i += 1
         else:  # is left parenthesis
             stack = [LEFT_PARENTHESIS]
-            while stack:
+            while True:
                 i += 1
                 next_char = expr[i]
                 if next_char is LEFT_PARENTHESIS:
@@ -48,13 +48,13 @@ def parse_exp(expr):
                         break
                 exp += next_char
             i += 1
-        if exp:
-            parse.append(exp)
+        parse.append(exp)
     return parse
+
 
 def calculate(expr):
     """Recursively evaluate arithmetic expression"""
-    if expr.isnumeric():
+    if expr.isnumeric(): # base case
         return int(expr) 
     parse = parse_exp(expr)
     if parse[0] is SUBTRACT: # case where subtract is unitary operator
@@ -68,4 +68,4 @@ def calculate(expr):
         result = op_dict[op](result, calculate(operand))
     return result
 
-print(calculate(s4))
+print(calculate(s7))
