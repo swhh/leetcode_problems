@@ -23,9 +23,9 @@ def overlapping(start_times, end_time):
     
 
 def job_scheduling(start_times, end_times, profit):
-    job_interval_profits = zip(start_times, end_times, profit)
-    sorted_job_interval_profits = sorted(job_interval_profits, key=lambda x: x[:-1])
-    profits_dict = {(start, end):profit for start, end, profit in sorted_job_interval_profits}
+    sorted_job_intervals = sorted(zip(start_times, end_times)) # sort job_intervals in case not sorted
+    new_start_times, new_end_times = zip(*sorted_job_intervals) # sorted start and end times
+    profits_dict = {(start_times[i], end_times[i]):profit[i] for i in range(len(profit))}
 
     @cache
     def recursive_job_scheduling(start_times, end_times):
@@ -34,10 +34,10 @@ def job_scheduling(start_times, end_times, profit):
         index = overlapping(start_times, end_times[0]) # find overlapping intervals
         end_points = [index] + [overlapping(start_times, end_times[i]) for i in range(1, index)] # find overlaps for overlapping intervals
         profits = [profits_dict[(start_times[i], end_times[i])] for i in (range(index))] # get profits for overlapping intervals
-        end_points_profits = zip(profits, end_points)
-        profits = [profit + recursive_job_scheduling(start_times[i:], end_times[i:]) for profit, i in end_points_profits] # choose max profit for all overlapping intervals
+        profits = [profit + recursive_job_scheduling(start_times[i:], end_times[i:]) for profit, i in zip(profits, end_points)] # choose max profit for all overlapping intervals
         return max(profits)
-    return recursive_job_scheduling(tuple(start_times), tuple(end_times))
+    
+    return recursive_job_scheduling(tuple(new_start_times), tuple(new_end_times))
 
 print(job_scheduling(startTime, endTime, profit))
 

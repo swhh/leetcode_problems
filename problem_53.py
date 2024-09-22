@@ -57,16 +57,15 @@ def max_sub_array(nums: list[int]) -> int:
     
 def linear_max_sub_array(nums: list[int]) -> int:
     """Linear time algorithm to calculate max subarray"""
-    i = current_sum = 0  
+    current_sum = 0  
     max_sum = float('-inf')
-    while i < len(nums):
+    for i in range(len(nums)):
         num = nums[i]
         current_sum += num
         if current_sum > max_sum:
             max_sum = current_sum
         if current_sum < 0: # start again 
             current_sum = 0   
-        i += 1
     return max_sum
 
    
