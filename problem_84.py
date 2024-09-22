@@ -4,6 +4,7 @@ heights = [2,1,5,6,2,3]
 heights2 = [2,4]
 heights3 = [2,2,5,6,2,3]
 heights4 = [2,1,5,6,2,3,2,2]
+heights5 = [2,2,5,6,2,3,1]
 
 def area(array):
     return min(array) * len(array)
@@ -33,7 +34,9 @@ def next_is_smaller(heights):
     return next_smaller
 
 def previous_is_smaller(heights):
-    return {i for i in range(1, len(heights)) if heights[i - 1] < heights[i]}
+    previous_smaller = {i for i in range(1, len(heights)) if heights[i - 1] < heights[i]}
+    previous_smaller.add(0) # include first height
+    return previous_smaller
 
 
 def largest_rectangle_area(heights):
@@ -50,4 +53,4 @@ def largest_rectangle_area(heights):
 
 
 
-print(largest_rectangle_area(heights3))
+print(largest_rectangle_area(heights5))
