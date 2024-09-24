@@ -18,19 +18,19 @@ def merge(intervals):
     intervals_sorted = sorted(intervals, key=lambda x: (x[0], x[1]))
     final_intervals = []
     current_interval = intervals_sorted[0]
-    i = 1
-    while i < len(intervals):
+
+    for i in range(len(intervals)):
         if overlap(current_interval, intervals_sorted[i]):
             current_interval = merge_intervals(current_interval, intervals_sorted[i])
         else:
             final_intervals.append(current_interval)
             current_interval = intervals_sorted[i]
-        i += 1
     final_intervals.append(current_interval)
+    
     return final_intervals
 
 
-print(merge(intervals_two))
+print(merge(intervals_one))
 
 
 
