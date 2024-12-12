@@ -15,7 +15,7 @@ def first_missing_positive(nums):
     min_pos = min(num for num in nums if num > 0)
     if not min_pos or min_pos > 1:
         return 1
-    n = sum(1 for _ in (num for num in nums if num > 0))  # first missing positive integer must be between 1 and n + 1
+    n = sum(1 for num in nums if num > 0)  # first missing positive integer must be between 1 and n + 1
     i = j = 0
     previous = False
     while i < n:
