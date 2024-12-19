@@ -6,6 +6,7 @@ heights3 = [2,2,5,6,2,3]
 heights4 = [2,1,5,6,2,3,2,2]
 heights5 = [2,2,5,6,2,3,1]
 
+
 def area(array):
     return min(array) * len(array)
 

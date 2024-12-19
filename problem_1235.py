@@ -15,6 +15,9 @@ profit_2 = [50,10,40,70]
 startTime3 = [1,1,1]
 endTime3 = [2,3,4]
 profit3 = [5,6,4]
+startTime4 =[5,2,1] 
+endTime4 =[7,4,4] 
+profit4 =[40,10,30]
 
 
 def overlapping(start_times, end_time):
@@ -25,7 +28,7 @@ def overlapping(start_times, end_time):
 def job_scheduling(start_times, end_times, profit):
     sorted_job_intervals = sorted(zip(start_times, end_times)) # sort job_intervals in case not sorted
     new_start_times, new_end_times = zip(*sorted_job_intervals) # sorted start and end times
-    profits_dict = {(start_times[i], end_times[i]):profit[i] for i in range(len(profit))}
+    profits_dict = {(start_times[i], end_times[i]): profit[i] for i in range(len(profit))}
 
     @cache
     def recursive_job_scheduling(start_times, end_times):
@@ -39,7 +42,7 @@ def job_scheduling(start_times, end_times, profit):
     
     return recursive_job_scheduling(tuple(new_start_times), tuple(new_end_times))
 
-print(job_scheduling(startTime, endTime, profit))
+print(job_scheduling(startTime4, endTime4, profit4))
 
 
 

@@ -25,6 +25,7 @@ p1 ="aa"
 p2 = "ab"
 p3 = "aaba"
 
+@cache
 def common_prefix(str1, str2):
     return ''.join(a for a, b in zip(str1, str2) if a == b)
 
@@ -42,17 +43,14 @@ def is_interleave(s1, s2, s3, turn=None):
         prefix = common_prefix(s1, s3) # s1 turn
         if prefix:
             return any(is_interleave(s1[i:], s2, s3[i:], turn= not turn) for i in range(1, len(prefix) + 1))
-        else:
-            return False
+        return False
     elif turn is False:
         prefix = common_prefix(s2, s3) # s2 turn
         if prefix:
             return any(is_interleave(s1, s2[i:], s3[i:], turn= not turn) for i in range(1, len(prefix) + 1))
-        else:
-            return False
+        return False
     else:
-        prefix1, prefix2 = common_prefix(s1, s3), common_prefix(s2, s3)
-        print(prefix1, prefix2)
+        prefix1, prefix2 = common_prefix(s1, s3), common_prefix(s2, s3) # try s1 or s2
         a = b = False
         if prefix1:
             turn = False
