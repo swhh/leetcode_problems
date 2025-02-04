@@ -7,6 +7,7 @@ wordDict1 = ["apple","pen"]
 s2 = "catsandog"
 wordDict2 = ["cats","dog","sand","and","cat"]
 s3 = "catsanddog"
+s4 = 'dog'
 
 
 def word_break(s, word_dict):
@@ -14,7 +15,7 @@ def word_break(s, word_dict):
     def recursive_word_break(string):
         if not string:
             return True
-        candidates = list(filter(lambda x: string.startswith(x), word_dict))
+        candidates = list(filter(string.startswith, word_dict))
         if not candidates:
             return False
         return any(map(recursive_word_break, (string[len(word):] for word in candidates)))
